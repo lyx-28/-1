@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>记忆翻牌游戏 - Memory Card Game</title>
+    <title>记忆翻牌游戏 - 版本选择</title>
     <style>
         * {
             margin: 0;
@@ -24,103 +24,124 @@
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 50px 60px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            max-width: 800px;
+            width: 100%;
         }
 
         h1 {
             color: white;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .subtitle {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
             margin-bottom: 40px;
-            font-size: 1.1rem;
         }
 
         .game-cards {
             display: flex;
             gap: 30px;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .game-card {
             background: white;
-            padding: 30px 40px;
-            border-radius: 15px;
-            cursor: pointer;
+            border-radius: 20px;
+            padding: 40px;
+            width: 300px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
+            cursor: pointer;
         }
 
         .game-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
-        .game-card h2 {
-            color: #667eea;
-            margin-bottom: 15px;
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
             font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
         }
 
-        .game-card .version {
-            color: #ff6b6b;
-            font-size: 0.9rem;
+        .game-version {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             margin-bottom: 15px;
-            font-weight: bold;
         }
 
-        .game-card .features {
-            color: #666;
-            font-size: 0.9rem;
-            text-align: left;
-            line-height: 1.8;
-        }
-
-        .game-card .features li {
+        .game-features {
             list-style: none;
-            padding-left: 20px;
-            position: relative;
+            padding: 0;
+            text-align: left;
         }
 
-        .game-card .features li::before {
+        .game-features li {
+            padding: 8px 0;
+            color: #666;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .game-features li::before {
             content: '✓';
-            position: absolute;
-            left: 0;
-            color: #4ecdc4;
+            color: #27ae60;
             font-weight: bold;
+        }
+
+        .play-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 40px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+        }
+
+        .play-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,107,0.5);
         }
 
         .footer {
             margin-top: 40px;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255,0.7);
             font-size: 0.9rem;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
-            .container {
-                padding: 30px 20px;
+            .game-card {
+                width: 100%;
+                max-width: 300px;
+                padding: 30px;
             }
 
             .game-cards {
                 gap: 20px;
-            }
-
-            .game-card {
-                padding: 20px;
-                min-width: 100%;
             }
         }
     </style>
@@ -128,24 +149,27 @@
 <body>
     <div class="container">
         <h1>🧠 记忆翻牌游戏</h1>
-        <p class="subtitle">Memory Card Game Collection</p>
-        
+        <p class="subtitle">选择你想玩的版本</p>
+
         <div class="game-cards">
-            <div class="game-card" onclick="window.location.href='./classic/'">
-                <h2>经典版</h2>
-                <div class="version">v1.0</div>
-                <ul class="features">
+            <div class="game-card" onclick="location.href='classic.html'">
+                <div class="game-icon">🎮</div>
+                <h2 class="game-title">经典版</h2>
+                <span class="game-version">v1.0</span>
+                <ul class="game-features">
                     <li>基础翻牌玩法</li>
                     <li>计时与步数统计</li>
-                    <li>得分系统</li>
-                    <li>通关弹窗</li>
+                    <li>简单得分系统</li>
+                    <li>通关判定</li>
                 </ul>
+                <a href="classic.html" class="play-btn">开始游戏</a>
             </div>
 
-            <div class="game-card" onclick="window.location.href='./enhanced/'">
-                <h2>升级版</h2>
-                <div class="version">v2.0</div>
-                <ul class="features">
+            <div class="game-card" onclick="location.href='enhanced.html'">
+                <div class="game-icon">🚀</div>
+                <h2 class="game-title">升级版</h2>
+                <span class="game-version">v2.0</span>
+                <ul class="game-features">
                     <li>多种难度选择</li>
                     <li>主题皮肤切换</li>
                     <li>音效系统</li>
@@ -153,11 +177,12 @@
                     <li>暂停/继续功能</li>
                     <li>动画效果</li>
                 </ul>
+                <a href="enhanced.html" class="play-btn">开始游戏</a>
             </div>
         </div>
 
         <div class="footer">
-            <p>点击卡片选择游戏版本</p>
+            <p>使用方向键或点击进行游戏</p>
         </div>
     </div>
 </body>
